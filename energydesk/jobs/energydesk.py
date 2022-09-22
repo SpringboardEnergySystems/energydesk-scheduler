@@ -13,7 +13,7 @@ def update_ticker():
     url = env.str('ENERGYDESK_URL')
     headers = {'Authorization': "token" + ' ' + tok}
     payload = {}
-    result = requests.post(url + "/energydesk/update-ticker/", json=payload, headers=headers)
+    result = requests.post(url + "/api/energydesk/update-ticker/", json=payload, headers=headers)
     # api_conn = ApiConnection(url)
     # api_conn.set_token(tok, "Token")
     print(result.text)
@@ -25,7 +25,7 @@ def update_energydesk_cache():
     url = env.str('ENERGYDESK_URL')
     headers={'Authorization':  "token" + ' ' + tok}
     payload={}
-    result = requests.post(url + "/energydesk/update-cache/", json=payload, headers=headers)
+    result = requests.post(url + "/api/energydesk/update-cache/", json=payload, headers=headers)
     #api_conn = ApiConnection(url)
     #api_conn.set_token(tok, "Token")
     print(result.text)
