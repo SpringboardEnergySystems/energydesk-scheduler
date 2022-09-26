@@ -9,7 +9,7 @@ RUN apt-get install gettext -y
 
 # All normal Python dependencies are contained in the slim-image above. This installs GitHub code from django-apps
 RUN pip3 install --upgrade pip
-COPY ./mqttreceiver/buildconfig/requirements.git.txt ./requirements.txt
+COPY ./scheduler/buildconfig/requirements.git.txt ./requirements.txt
 RUN pip3 install --upgrade --force-reinstall -r requirements.txt
 
 
@@ -29,8 +29,8 @@ RUN echo "HOME : $APP_HOME"
 RUN chmod 777 $APP_HOME
 
 # copy project
-COPY ./mqttreceiver/ $APP_HOME
-COPY ./mqttreceiver/buildconfig/entrypoint.sh $APP_HOME/entrypoint.sh
+COPY ./scheduler/ $APP_HOME
+COPY ./scheduler/buildconfig/entrypoint.sh $APP_HOME/entrypoint.sh
 
 
 # chown all the files to the app user
