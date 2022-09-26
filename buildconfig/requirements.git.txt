@@ -22,4 +22,8 @@ networkx==2.6.3
 pydot==1.4.2
 django-apscheduler==0.6.0
 django-money
+python-dotenv==0.19.0
+pandas==1.5.0
+pytz==2022.2.1
+networkx==2.6.3
 
