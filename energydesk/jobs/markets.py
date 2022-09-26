@@ -12,10 +12,11 @@ def download_spotdata():
     url = env.str('ENERGYDESK_URL')
     headers = {'Authorization': "token" + ' ' + tok}
     payload = {}
-    result = requests.post(url + "/api/markets/download-spotdata/", json=payload, headers=headers)
+    full_url = url + "/api/markets/download-spotdata/"
+    result = requests.post(full_url, json=payload, headers=headers)
     # api_conn = ApiConnection(url)
     # api_conn.set_token(tok, "Token")
-    print(result.text)
+    print("\nResult", result.status_code, full_url)
     logger.info("Downloading spotdata")
 
 def download_nasdaqdata():
@@ -24,8 +25,9 @@ def download_nasdaqdata():
     url = env.str('ENERGYDESK_URL')
     headers = {'Authorization': "token" + ' ' + tok}
     payload = {}
-    result = requests.post(url + "/api/markets/download-nasdaqdata/", json=payload, headers=headers)
+    full_url = url + "/api/markets/download-nasdaqdata/"
+    result = requests.post(full_url, json=payload, headers=headers)
     # api_conn = ApiConnection(url)
     # api_conn.set_token(tok, "Token")
-    print(result.text)
+    print("\nResult", result.status_code, full_url)
     logger.info("Downloading nasdaqdata")

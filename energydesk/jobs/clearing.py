@@ -12,8 +12,9 @@ def download_clearing_reports():
     url = env.str('ENERGYDESK_URL')
     headers = {'Authorization': "token" + ' ' + tok}
     payload = {}
-    result = requests.post(url + "/api/clearing/download-clearing-reports/", json=payload, headers=headers)
+    full_url = url + "/api/clearing/download-clearing-reports/"
+    result = requests.post(full_url, json=payload, headers=headers)
     # api_conn = ApiConnection(url)
     # api_conn.set_token(tok, "Token")
-    print(result.text)
+    print("\nResult", result.status_code, full_url)
     logger.info("Downloading clearing reports")
