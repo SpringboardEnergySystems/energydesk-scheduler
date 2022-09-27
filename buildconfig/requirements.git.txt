@@ -13,6 +13,7 @@ git+https://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@github.com/SpringboardOpenE
 git+https://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@github.com/SpringboardOpenEnergy/django-mqtt-gateway.git
 git+https://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@github.com/SpringboardOpenEnergy/django-admin.git
 git+https://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@github.com/SpringboardOpenEnergy/energydesk-clients.git
+git+https://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@github.com/SpringboardEnergySystems/energydesk-python-sdk.git
 lxml
 singleton_decorator==1.0.0
 singleton_decorator
