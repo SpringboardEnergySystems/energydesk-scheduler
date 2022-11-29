@@ -11,7 +11,7 @@ def generate_baselines():
     tok = env.str('ENERGYDESK_TOKEN')
     url = env.str('ENERGYDESK_URL')
     headers = {'Authorization': "token" + ' ' + tok}
-    payload = {}
+    payload = {"num_days": 5, "model_name": "WeekDay Profile"}
     full_url = url + "/api/baselines/exec-generate-baselines/"
     result = requests.post(full_url, json=payload, headers=headers)
     # api_conn = ApiConnection(url)
