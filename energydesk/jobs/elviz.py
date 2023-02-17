@@ -1,11 +1,7 @@
 import logging
-from energydeskapi.sdk.common_utils import init_api
 from energydeskapi.conversions.elvizlink_api import ElvizLinksApi
-from energydeskapi.sdk.money_utils import FormattedMoney
 from energydeskapi.contracts.contracts_api import Contract as ApiContract, ContractTag, ContractsApi
 from energydeskapi.marketdata.products_api import ProductsApi
-from energydeskapi.types.company_enum_types import CompanyTypeEnum, CompanyRoleEnum
-from energydeskapi.types.market_enum_types import MarketEnum, InstrumentTypeEnum
 from energydeskapi.sdk.api_connection import ApiConnection
 from os.path import join, dirname
 import environ
