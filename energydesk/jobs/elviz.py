@@ -17,22 +17,15 @@ def load_elviz_trades():
     payload = {}
     api_conn = ApiConnection(url)
     api_conn.set_token(tok, "Token")
-    elviz_trades = ElvizLinksApi.get_latest_elviz_trades(api_conn)
+    elviz_trades = ElvizLinksApi.get_latest_elviz_trades(api_conn, 1)
     contracts = []
     for t in elviz_trades:
-        success, json_res, status_code, error_msg = ProductsApi.generate_market_product_from_ticker(api_conn,
-                                                                                                    "Nordic Power",
-                                                                                                    t['commodity'][
-                                                                                                        'product_code'])
-        if success:
-            print(json_res)
-            market_product_key = json_res[0]['pk']
-        print(t)
-
+        # success, json_res, status_code, error_msg = ProductsApi.generate_market_product_from_ticker(api_conn,
+        #                                                                                             "Nordic Power",
+        #                                                                                             t['commodity'][
+        #                                                                                                 'product_code'])
         contract_obj = ApiContract.from_simple_dict(t)
-        print(contract_obj.get_dict(api_conn))
         contracts.append(contract_obj)
-    print(contracts)
-    full_url = proxy_url + "/api/elviztrades"
-    print("\nResult", full_url)
-    logger.info("Loading Elviz trades")
+
+    print("Loaded ", len(contracts), " contracts from Elviz")
+    ContractsApi.bulk_insert_contracts(api_conn, contracts)
