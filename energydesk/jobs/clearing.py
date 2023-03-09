@@ -18,3 +18,16 @@ def download_clearing_reports():
     # api_conn.set_token(tok, "Token")
     print("\nResult", result.status_code, full_url)
     logger.info("Downloading clearing reports")
+
+def perform_reconciliation():
+    env = environ.Env()
+    tok = env.str('ENERGYDESK_TOKEN')
+    url = env.str('ENERGYDESK_URL')
+    headers = {'Authorization': "token" + ' ' + tok}
+    payload = {}
+    full_url = url + "/api/clearing/perform-reconciliation/"
+    result = requests.post(full_url, json=payload, headers=headers)
+    # api_conn = ApiConnection(url)
+    # api_conn.set_token(tok, "Token")
+    print("\nResult", result.status_code, full_url)
+    logger.info("Reconciling trades")
