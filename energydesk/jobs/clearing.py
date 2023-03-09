@@ -4,6 +4,7 @@ from energydeskapi.sdk.api_connection import ApiConnection
 from energydeskapi.scheduler.scheduler_api import SchedulerApi
 import environ
 import requests
+import datetime
 logger = logging.getLogger(__name__)
 
 def download_clearing_reports():
@@ -24,7 +25,8 @@ def perform_reconciliation():
     tok = env.str('ENERGYDESK_TOKEN')
     url = env.str('ENERGYDESK_URL')
     headers = {'Authorization': "token" + ' ' + tok}
-    payload = {}
+    date_today = (datetime.date.today()).strftime("%Y-%m-%d")
+    payload = {"date": date_today}
     full_url = url + "/api/clearing/perform-reconciliation/"
     result = requests.post(full_url, json=payload, headers=headers)
     # api_conn = ApiConnection(url)
