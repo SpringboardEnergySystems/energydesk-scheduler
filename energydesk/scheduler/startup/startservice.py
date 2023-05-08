@@ -35,10 +35,10 @@ def load_schedules(api_conn, scheduler):
     url = env.str('ENERGYDESK_URL')
     api_conn = ApiConnection(url)
     api_conn.set_token(tok, "Token")
-    df=SchedulerApi.get_scheduled_jobs_df(api_conn)
+    df=SchedulerApi.get_scheduled_jobs_embedded_df(api_conn)
     print(df)
     for index, row in df.iterrows():
-        setup_job(scheduler, row['crontab'], row['python_module'], row['function'])
+        setup_job(scheduler, row['crontab'], row['job_definition']['python_module'], row['job_definition']['func_name'])
 
 def startup_scheduler(api_conn):
     scheduler = BlockingScheduler()
