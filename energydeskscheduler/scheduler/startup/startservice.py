@@ -19,6 +19,7 @@ def import_from(module, name):
     module = __import__(module, fromlist=[name])
     return getattr(module, name)
 
+
 def setup_job(scheduler,crontab, python_module, functon_name, arguments=[]):
     logger.info("Scheduling " + python_module + "/" + functon_name + "(" + crontab + ")")
     job_function = import_from(python_module, functon_name)
@@ -38,6 +39,7 @@ def load_schedules(api_conn, scheduler):
     api_conn = ApiConnection(url)
     api_conn.set_token(tok, "Token")
     df=SchedulerApi.get_scheduled_jobs_embedded_df(api_conn)
+
     print(df)
     for index, row in df.iterrows():
         setup_job(scheduler, row['crontab'], row['job_definition']['python_module'], row['job_definition']['func_name'])
