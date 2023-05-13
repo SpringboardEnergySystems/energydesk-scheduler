@@ -3,5 +3,5 @@ pandas
 pytz
 networkx==2.6.3
 git+https://github.com/SpringboardOpenEnergy/energydesk-clients.git
-git+https://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@github.com/SpringboardOpenEnergy/django-utils.git
+git+https://${GITHUB_ACCESS_TOKEN}@github.com/SpringboardOpenEnergy/django-utils.git
 git+https://github.com/SpringboardEnergySystems/energydesk-python-sdk.git

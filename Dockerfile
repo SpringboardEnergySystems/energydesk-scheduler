@@ -7,6 +7,8 @@ RUN apt-get --allow-releaseinfo-change update
 RUN apt-get install -y dos2unix
 RUN apt-get install gettext -y
 
+ARG GITHUB_ACCESS_TOKEN
+
 # All normal Python dependencies are contained in the slim-image above. This installs GitHub code from django-apps
 RUN pip3 install --upgrade pip
 COPY ./scheduler/buildconfig/requirements.git.txt ./requirements.txt
