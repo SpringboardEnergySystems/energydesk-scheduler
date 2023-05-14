@@ -8,20 +8,20 @@ import requests
 import datetime
 logger = logging.getLogger(__name__)
 
-def impl_download_clearing_reports():
-    base_url, headers=get_environment()
+def impl_download_clearing_reports(token=None):
+    base_url, headers=get_environment(token)
     payload = {}
     full_url = base_url + "/api/clearing/download-clearing-reports/"
     result = requests.post(full_url, json=payload, headers=headers)
     print("\nResult", result.status_code, full_url)
     logger.info("Downloading clearing reports")
 
-def download_clearing_reports():
-    thread = Thread(target=impl_download_clearing_reports)
+def download_clearing_reports(token=None):
+    thread = Thread(target=impl_download_clearing_reports, args=[token])
     thread.start()
 
-def impl_perform_reconciliation():
-    base_url, headers=get_environment()
+def impl_perform_reconciliation(token=None):
+    base_url, headers=get_environment(token)
     date_today = (datetime.date.today()).strftime("%Y-%m-%d")
     payload = {"date": date_today}
     full_url = base_url + "/api/clearing/perform-reconciliation/"
@@ -29,6 +29,6 @@ def impl_perform_reconciliation():
     print("\nResult", result.status_code, full_url)
     logger.info("Reconciling trades")
 
-def perform_reconciliation():
-    thread = Thread(target=impl_perform_reconciliation)
+def perform_reconciliation(token=None):
+    thread = Thread(target=impl_perform_reconciliation, args=[token])
     thread.start()

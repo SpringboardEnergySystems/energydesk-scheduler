@@ -8,14 +8,14 @@ import requests
 import datetime
 logger = logging.getLogger(__name__)
 
-def impl_check_for_unavailability():
-    base_url, headers = get_environment()
+def impl_check_for_unavailability(token=None):
+    base_url, headers = get_environment(token)
     payload = {}
     full_url = base_url + "/api/fundamentals/check-for-unavailability/"
     result = requests.post(full_url, json=payload, headers=headers)
     print("\nResult", result.status_code, full_url)
     logger.info("Checking for unavailability")
 
-def check_for_unavailability():
-    thread = Thread(target=impl_check_for_unavailability)
+def check_for_unavailability(token=None):
+    thread = Thread(target=impl_check_for_unavailability, args=[token])
     thread.start()

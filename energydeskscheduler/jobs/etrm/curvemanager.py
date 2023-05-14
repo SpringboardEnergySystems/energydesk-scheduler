@@ -8,8 +8,8 @@ import requests
 import datetime
 logger = logging.getLogger(__name__)
 
-def impl_download_forward_curve():
-    base_url, headers = get_environment()
+def impl_download_forward_curve(token=None):
+    base_url, headers = get_environment(token)
     payload = {}
     full_url = base_url + "/api/curvemanager/download-curvedata/"
     result = requests.post(full_url, json=payload, headers=headers)
@@ -18,6 +18,6 @@ def impl_download_forward_curve():
     print("\nResult", result.status_code, full_url)
     logger.info("Downloading spotdata")
 
-def download_forward_curve():
-    thread = Thread(target=impl_download_forward_curve)
+def download_forward_curve(token=None):
+    thread = Thread(target=impl_download_forward_curve, args=[token])
     thread.start()

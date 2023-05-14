@@ -13,13 +13,17 @@ import requests
 import environ
 logger = logging.getLogger(__name__)
 
-def impl_load_elviz_trades():
+def impl_load_elviz_trades(token=None):
     env = environ.Env()
-    tok = env.str('ENERGYDESK_TOKEN')
     base_url = env.str('ENERGYDESK_URL')
     payload = {}
     api_conn = ApiConnection(base_url)
-    api_conn.set_token(tok, "Token")
+    if token==None:
+        token = env.str('ENERGYDESK_TOKEN')
+        api_conn.set_token(token, "Token")
+    else:
+        api_conn.set_token(token, "Bearer")
+
     elviz_trades = ElvizLinksApi.get_latest_elviz_trades(api_conn, 1)
     contracts = []
     for t in elviz_trades:
@@ -29,6 +33,6 @@ def impl_load_elviz_trades():
     print("Loaded ", len(contracts), " contracts from Elviz")
     ContractsApi.bulk_insert_contracts(api_conn, contracts)
 
-def load_elviz_trades():
-    thread = Thread(target=impl_load_elviz_trades)
+def load_elviz_trades(token=None):
+    thread = Thread(target=impl_load_elviz_trades, args=[token])
     thread.start()
