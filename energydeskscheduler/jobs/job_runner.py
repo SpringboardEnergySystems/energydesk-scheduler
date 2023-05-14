@@ -14,7 +14,7 @@ def import_from(module, name):
 
 
 # Used by Portal to execute a job right away instead of waiting for the scheduler
-def run_job( python_module, functon_name, arguments=[]):
+def run_job(token, python_module, functon_name, arguments=[]):
     logger.info("Exec " + python_module + "/" + functon_name )
     job_function = import_from(python_module, functon_name)
-    job_function()
+    job_function(token)

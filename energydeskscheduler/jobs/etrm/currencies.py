@@ -8,7 +8,7 @@ import requests
 import datetime
 logger = logging.getLogger(__name__)
 
-def impl_download_currencydata():
+def impl_download_currencydata(token):
     base_url, headers = get_environment()
     payload = {}
     full_url=base_url + "/api/currencies/download-currencydata/"
@@ -18,6 +18,6 @@ def impl_download_currencydata():
     print("\nResult", result.status_code, full_url)
     logger.info("Downloading currency data")
 
-def download_currencydata():
-    thread = Thread(target=impl_download_currencydata)
+def download_currencydata(token=None):
+    thread = Thread(target=impl_download_currencydata, args=[token])
     thread.start()
