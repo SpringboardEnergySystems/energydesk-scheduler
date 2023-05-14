@@ -12,7 +12,7 @@ def impl_download_currencydata(token):
     base_url, headers = get_environment(token)
     payload = {}
     full_url=base_url + "/api/currencies/download-currencydata/"
-    result = base_url.post(full_url, json=payload, headers=headers)
+    result = requests.post(full_url, json=payload, headers=headers)
     # api_conn = ApiConnection(url)
     # api_conn.set_token(tok, "Token")
     print("\nResult", result.status_code, full_url)
