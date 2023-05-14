@@ -16,7 +16,6 @@ def import_from(module, name):
 # Used by Portal to execute a job right away instead of waiting for the scheduler
 def run_job(token, python_module, functon_name, arguments=[]):
     logger.info("Exec " + python_module + "/" + functon_name)
-
     env = environ.Env()
     base_url = env.str('ENERGYDESK_URL')
     api_conn = ApiConnection(base_url)

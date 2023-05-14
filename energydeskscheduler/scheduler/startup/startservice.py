@@ -42,7 +42,8 @@ def load_schedules(api_conn, scheduler):
 
     print(df)
     for index, row in df.iterrows():
-        setup_job(scheduler, row['crontab'], row['job_definition']['python_module'], row['job_definition']['func_name'])
+        setup_job(scheduler, row['crontab'], row['job_definition']['python_module'], row['job_definition']['func_name'],
+                  [api_conn,])
 
 def scheduler_listener(event):
 
