@@ -17,7 +17,7 @@ def impl_update_ticker(token=None):
     logger.info("Updating ticker")
 
 def update_ticker(token=None):
-    thread = Thread(target=impl_update_ticker)
+    thread = Thread(target=impl_update_ticker, args=[token])
     thread.start()
 
 def impl_update_energydesk_cache(token=None):
