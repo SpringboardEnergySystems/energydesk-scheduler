@@ -23,7 +23,7 @@ def impl_load_elviz_trades(api_conn):
         contracts.append(contract_obj)
 
     print("Loaded ", len(contracts), " contracts from Elviz")
-    ContractsApi.bulk_insert_contracts(api_conn, contracts)
+    #ContractsApi.bulk_insert_contracts(api_conn, contracts)
 
 def load_elviz_trades(api_conn):
     thread = Thread(target=impl_load_elviz_trades, args=[api_conn])
