@@ -18,6 +18,7 @@ def impl_load_elviz_trades(api_conn):
     elviz_trades = ElvizLinksApi.get_latest_elviz_trades(api_conn, 1)
     contracts = []
     for t in elviz_trades:
+        print(t)
         contract_obj = ApiContract.from_simple_dict(t)
         contracts.append(contract_obj)
 
